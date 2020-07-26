@@ -7,12 +7,12 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './register/login.component';
+import { CurrentComponent} from './register/current.component'
 
 import { RegisterUserService } from './registerUser.service';
+import { CurrentUserService } from './currentUser.service';
 
 
 @NgModule({
@@ -20,8 +20,7 @@ import { RegisterUserService } from './registerUser.service';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
+    CurrentComponent,
     LoginComponent,
     RegisterComponent
     
@@ -32,13 +31,12 @@ import { RegisterUserService } from './registerUser.service';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'cur', component: CurrentComponent },
     ])
   ],
-  providers: [RegisterUserService],
+  providers: [RegisterUserService, CurrentUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

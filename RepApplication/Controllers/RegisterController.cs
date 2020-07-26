@@ -22,12 +22,15 @@ namespace RepApplication.Controllers
 
         [HttpPost]
         
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> RegistrateUser(User user)
         {
             if (ModelState.IsValid)
             {
                 if (db.Users.FirstOrDefault(u => u.Email == user.Email) == null)
                 {
+                    Role userRole = db.Roles.FirstOrDefault(r => r.Name == "employee");
+                    if (userRole != null)
+                        user.Role = userRole;
 
                     db.Users.Add(user);
                    await db.SaveChangesAsync();
@@ -44,6 +47,7 @@ namespace RepApplication.Controllers
         }
 
         [HttpPut]
+  
         public async Task<ActionResult<User>> LoginUser(User user)
         {
             if (ModelState.IsValid)

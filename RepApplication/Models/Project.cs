@@ -5,17 +5,14 @@ using System.Threading.Tasks;
 
 namespace RepApplication.Models
 {
-    public class User
+    public class Project
     {
-        public int UserId { get; set; }
+        public int ProjectId { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public int? RoleId { get; set; }
-        public Role Role { get; set; }
+        public string Date { get; set; }
+        public string Price { get; set; }
         public List<UserProject> UserProjects { get; set; }
-
-        public User()
+        public Project()
         {
             UserProjects = new List<UserProject>();
         }

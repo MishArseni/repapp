@@ -1,0 +1,8 @@
+<div >
+  <h2>Изменение данных о проекте</h2>
+  <project-form [(project)]="project"></project-form>
+  <div class="form-group">
+    <input type="button" value="Сохранить" (click)="save()" class="btn btn-success" />
+  </div>
+</div>
+<a routerLink="/projectList" class="nav-link">Назад к списку</a>

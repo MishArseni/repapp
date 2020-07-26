@@ -27,6 +27,7 @@ export class UserEditComponent implements OnInit {
 
   save() {
     this.userService.updateUser(this.user).subscribe(data => this.router.navigateByUrl("/"));
+    window.location.href = '/';
   }
 
 }

@@ -30,6 +30,11 @@
     <None Remove="ClientApp\src\app\models\role.ts" />
     <None Remove="ClientApp\src\app\models\user.ts" />
     <None Remove="ClientApp\src\app\models\userProjects.ts" />
+    <None Remove="ClientApp\src\app\project.service.ts" />
+    <None Remove="ClientApp\src\app\projects\project-create.component.ts" />
+    <None Remove="ClientApp\src\app\projects\project-edit.component.ts" />
+    <None Remove="ClientApp\src\app\projects\project-form.component.ts" />
+    <None Remove="ClientApp\src\app\projects\project-list.component.ts" />
     <None Remove="ClientApp\src\app\registerUser.service.ts" />
     <None Remove="ClientApp\src\app\register\login.component.ts" />
     <None Remove="ClientApp\src\app\register\register.component.ts" />
@@ -46,6 +51,11 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\role.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\user.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\userProjects.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\projects\project-create.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\projects\project-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\projects\project-form.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\projects\project-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\registerUser.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\register\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\register\register.component.ts" />

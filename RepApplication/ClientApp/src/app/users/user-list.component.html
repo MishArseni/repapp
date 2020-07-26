@@ -1,0 +1,24 @@
+<div>
+  <a routerLink="/create" class="nav-link">Добавить</a>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Password</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of users">
+      <td>{{u?.name}}</td>
+      <td>{{u?.email}}</td>
+      <td>{{u?.password}}</td>
+      <td>
+        <a [routerLink]="['edit', u.userId]" class="btn btn-sm btn-primary">Изменить</a>
+        <button (click)="delete(u.userId)" class="btn btn-sm btn-danger">Удалить</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

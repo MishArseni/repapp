@@ -7,12 +7,20 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
+//Login/Register
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './register/login.component';
-import { CurrentComponent} from './register/current.component'
+//UserCRUDComponent
+import { UserFormComponent } from './users/user-form.component';
+import { UserCreateComponent } from './users/user-create.component';
+import { UserEditComponent } from './users/user-edit.component';
+import { UserListComponent } from './users/user-list.component';
 
+
+//Services
 import { RegisterUserService } from './registerUser.service';
 import { CurrentUserService } from './currentUser.service';
+import { UserService } from './user.service';
 
 
 @NgModule({
@@ -20,23 +28,26 @@ import { CurrentUserService } from './currentUser.service';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CurrentComponent,
     LoginComponent,
-    RegisterComponent
-    
+    RegisterComponent,
+    UserFormComponent,
+    UserCreateComponent,
+    UserEditComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: UserListComponent, pathMatch: 'full' },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'cur', component: CurrentComponent },
+      { path: 'create', component: UserCreateComponent },
+      { path: 'edit/:id', component: UserEditComponent },
     ])
   ],
-  providers: [RegisterUserService, CurrentUserService],
+  providers: [RegisterUserService, CurrentUserService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using RepApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,14 @@ namespace RepApplication.Controllers
             string name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
             User user = db.Users.FirstOrDefault(u => u.Email == name);
             return user;
+        }
+
+        [HttpDelete]
+
+        public async void Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            
         }
 
 

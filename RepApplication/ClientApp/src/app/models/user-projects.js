@@ -10,4 +10,4 @@ var UserProject = /** @class */ (function () {
     return UserProject;
 }());
 exports.UserProject = UserProject;
-//# sourceMappingURL=userProjects.js.map
+//# sourceMappingURL=user-projects.js.map

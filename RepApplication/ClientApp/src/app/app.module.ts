@@ -7,25 +7,31 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
+
 //Login/Register
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './register/login.component';
+
 //UserCRUDComponents
 import { UserFormComponent } from './users/user-form.component';
 import { UserCreateComponent } from './users/user-create.component';
 import { UserEditComponent } from './users/user-edit.component';
 import { UserListComponent } from './users/user-list.component';
+
 //ProjectCRUDComponents
 import { ProjectFormComponent } from './projects/project-form.component';
 import { ProjectCreateComponent } from './projects/project-create.component';
 import { ProjectListComponent } from './projects/project-list.component';
 import { ProjectEditComponent } from './projects/project-edit.component';
+import { MyProjectListComponent } from './my-projects/my-project-list.component';
+import { MyProjectAddComponent } from './my-projects/my-project-add.component'
 
 //Services
 import { RegisterUserService } from './registerUser.service';
 import { CurrentUserService } from './currentUser.service';
 import { UserService } from './user.service';
 import { ProjectService } from './project.service';
+
 
 
 
@@ -46,7 +52,9 @@ import { ProjectService } from './project.service';
     ProjectFormComponent,
     ProjectCreateComponent,
     ProjectListComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    MyProjectListComponent,
+    MyProjectAddComponent
 
   ],
   imports: [
@@ -54,13 +62,16 @@ import { ProjectService } from './project.service';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: UserListComponent, pathMatch: 'full' },
+      { path: '', component: RegisterComponent, pathMatch: 'full' },
+      { path: 'userList', component: UserListComponent, pathMatch: 'full' },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'createUser', component: UserCreateComponent },
       { path: 'edit/:id', component: UserEditComponent },
       { path: 'createProject', component: ProjectCreateComponent },
       { path: 'projectList', component: ProjectListComponent },
+      { path: 'myProjectList', component: MyProjectListComponent },
+      { path: 'addToMyProject', component: MyProjectAddComponent },
       { path: 'projectList/curproj/:id', component: ProjectEditComponent },
     ])
   ],

@@ -28,8 +28,10 @@
     <None Remove="ClientApp\currentUser.service.ts" />
     <None Remove="ClientApp\src\app\models\project.ts" />
     <None Remove="ClientApp\src\app\models\role.ts" />
+    <None Remove="ClientApp\src\app\models\user-projects.ts" />
     <None Remove="ClientApp\src\app\models\user.ts" />
-    <None Remove="ClientApp\src\app\models\userProjects.ts" />
+    <None Remove="ClientApp\src\app\my-projects\my-project-add.component.ts" />
+    <None Remove="ClientApp\src\app\my-projects\my-project-list.component.ts" />
     <None Remove="ClientApp\src\app\project.service.ts" />
     <None Remove="ClientApp\src\app\projects\project-create.component.ts" />
     <None Remove="ClientApp\src\app\projects\project-edit.component.ts" />
@@ -50,7 +52,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\project.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\role.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\user.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\userProjects.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\user-projects.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\my-projects\my-project-add.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\my-projects\my-project-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\project.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\projects\project-create.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\projects\project-edit.component.ts" />

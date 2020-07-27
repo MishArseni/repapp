@@ -1,4 +1,4 @@
-import { UserProject } from './userProjects'
+import { UserProject } from './user-projects'
 
 export class Project {
   constructor(

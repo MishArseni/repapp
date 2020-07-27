@@ -1,0 +1,24 @@
+<h2>Список проектов КОТОРЫХ НЕТ</h2>
+<div>
+  <a routerLink="/toMyProject" class="nav-link">Добавить</a>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Date</td>
+      <td>Price</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of projects">
+      <td>{{u?.name}}</td>
+      <td>{{u?.date}}</td>
+      <td>{{u?.price}}</td>
+      <td>
+        <input type="button" value="Сохранить" (click)="save(u.projectId)" class="btn btn-success" />
+      </td>
+    </tr>
+  </tbody>
+</table>

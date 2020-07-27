@@ -1,5 +1,5 @@
 import { Role } from './role';
-import { UserProject} from './userProjects'
+import { UserProject} from './user-projects'
 
 export class User {
   constructor(

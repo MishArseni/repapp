@@ -61,7 +61,7 @@ import { ProjectService } from './project.service';
       { path: 'edit/:id', component: UserEditComponent },
       { path: 'createProject', component: ProjectCreateComponent },
       { path: 'projectList', component: ProjectListComponent },
-      { path: 'project/:id', component: ProjectEditComponent },
+      { path: 'projectList/curproj/:id', component: ProjectEditComponent },
     ])
   ],
   providers: [RegisterUserService, CurrentUserService, UserService, ProjectService],

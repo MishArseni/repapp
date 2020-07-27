@@ -1,3 +1,4 @@
+<h2>Список проектов</h2>
 <div>
   <a routerLink="/createProject" class="nav-link">Добавить</a>
 </div>
@@ -16,7 +17,7 @@
       <td>{{u?.date}}</td>
       <td>{{u?.price}}</td>
       <td>
-        <a [routerLink]="['project', u.projectId]" class="btn btn-sm btn-primary">Изменить</a>
+        <a [routerLink]="['curproj', u.projectId]" class="btn btn-sm btn-primary">Изменить</a>
         <button (click)="delete(u.projectId)" class="btn btn-sm btn-danger">Удалить</button>
       </td>
     </tr>

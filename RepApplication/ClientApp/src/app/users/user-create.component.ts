@@ -13,6 +13,6 @@ export class UserCreateComponent {
 
   save() {
     this.userService.createUser(this.user).subscribe(data => this.router.navigate(['/']));
-    window.location.href = '/';
+    window.location.href = '/userList';
   }
 }

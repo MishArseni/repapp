@@ -1,13 +1,14 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <h2>Список проектов</h2>
 <div>
-  <a routerLink="/createProject" class="nav-link">Добавить</a>
+  <button type="button" class="btn btn-warning" routerLink="/createProject">Добавить проект</button>
 </div>
-<table class="table table-striped">
+<table>
   <thead>
     <tr>
-      <td>Name</td>
-      <td>Date</td>
-      <td>Price</td>
+      <td>Название</td>
+      <td>Дедлайн</td>
+      <td>Цена</td>
       <td></td>
     </tr>
   </thead>
@@ -17,9 +18,11 @@
       <td>{{u?.date}}</td>
       <td>{{u?.price}}</td>
       <td>
-        <a [routerLink]="['curproj', u.projectId]" class="btn btn-sm btn-primary">Изменить</a>
-        <button (click)="delete(u.projectId)" class="btn btn-sm btn-danger">Удалить</button>
+       
+        <button [routerLink]="['curproj', u.projectId]" class="btn btn-outline-light">Изменить</button>
+        <button (click)="delete(u.projectId)" class="btn btn-outline-light">Удалить</button>
       </td>
     </tr>
   </tbody>
 </table>
+

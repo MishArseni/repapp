@@ -1,0 +1,54 @@
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
+h2 {
+  margin-bottom: 20px;
+  color: #f19900;
+}
+
+table {
+  margin-top:40px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  border-collapse: collapse;
+  text-align: center;
+  width:100%;
+}
+
+th, td:first-child {
+  background: #f19900;
+  color: white;
+  padding: 10px 20px;
+}
+
+th, td {
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+  border-color: white;
+}
+
+td {
+  background: #ffbd2c;
+  padding:10px;
+}
+
+  th:first-child, td:first-child {
+    text-align: left;
+  }
+
+thead tr td {
+  background-color: #f19900;
+  color: white;
+}
+
+td button{
+   margin-left:10px;
+}
+
+i{
+    transition: 0.2s;
+}
+
+i:hover{
+    color:white;
+}
+

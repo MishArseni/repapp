@@ -27,7 +27,7 @@ export class ProjectEditComponent implements OnInit {
 
   save() {
     this.projectService.updateProject(this.project).subscribe(data => this.router.navigateByUrl("/"));
-    window.location.href = '/';
+    window.location.href = '/userList';
   }
 
 }

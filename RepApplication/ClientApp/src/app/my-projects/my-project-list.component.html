@@ -1,6 +1,6 @@
-<h2>Список проектов FOR ADD</h2>
+<h2>Добро пожаловать {{user.name}}, вот список ваших проектов!</h2>
 <div>
-  <a routerLink="/addToMyProject" class="nav-link">Добавить</a>
+  <button type="button" class="btn btn-warning" routerLink="/addToMyProject">Взяться за проект</button>
 </div>
 <table class="table table-striped">
   <thead>
@@ -17,7 +17,7 @@
       <td>{{u?.date}}</td>
       <td>{{u?.price}}</td>
       <td>
-        <button (click)="delete(u.projectId)" class="btn btn-sm btn-danger">Удалить</button>
+        <button type="button" class="btn btn-success">Покинуть проект</button>
       </td>
     </tr>
   </tbody>

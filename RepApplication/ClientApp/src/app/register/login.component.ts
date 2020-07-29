@@ -15,6 +15,7 @@ export class LoginComponent {
 
   save() {
     this.registerUserService.loginUser(this.user).subscribe(data => this.router.navigateByUrl("/"));
+    window.location.href = '/userList';
   }
 
 }

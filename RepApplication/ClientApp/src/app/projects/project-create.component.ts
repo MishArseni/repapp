@@ -12,7 +12,7 @@ export class ProjectCreateComponent {
   constructor(private projectService: ProjectService, private router: Router) { }
 
   save() {
-    this.projectService.createProject(this.project).subscribe(data => this.router.navigate(['/']));
+    this.projectService.createProject(this.project).subscribe();
     window.location.href = '/projectList';
   }
 }

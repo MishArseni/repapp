@@ -21,4 +21,5 @@ export class MyProjectAddComponent{
     this.projectService.addToMyProjects(id).subscribe();
     window.location.href = '/projectList';
   }
+
 }

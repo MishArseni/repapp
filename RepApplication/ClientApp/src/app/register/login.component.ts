@@ -4,7 +4,8 @@ import { User } from '../models/user';
 import { RegisterUserService } from '../registerUser.service';
 
 @Component({
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./register.component.css']
 })
 
 export class LoginComponent {

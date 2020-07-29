@@ -4,7 +4,8 @@ import { User } from '../models/user';
 import { RegisterUserService } from '../registerUser.service';
 
 @Component({
-  templateUrl:'./register.component.html'
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
 
@@ -13,6 +14,7 @@ export class RegisterComponent {
 
   save() {
     this.registerUserService.registerUser(this.user).subscribe(data => this.router.navigateByUrl("/"));
+    window.location.href = '/login';
   }
 
 }

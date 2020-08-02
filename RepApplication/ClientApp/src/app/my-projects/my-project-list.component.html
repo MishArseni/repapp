@@ -17,7 +17,7 @@
       <td>{{u?.date}}</td>
       <td>{{u?.price}}</td>
       <td>
-        <button type="button" class="btn btn-success">Покинуть проект</button>
+        <button type="button" class="btn btn-success" (click) ="delete(u?.projectId)">Покинуть проект</button>
       </td>
     </tr>
   </tbody>

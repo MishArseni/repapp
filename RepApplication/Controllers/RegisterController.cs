@@ -21,7 +21,7 @@ namespace RepApplication.Controllers
         }
 
         [HttpPost]
-        
+
         public async Task<ActionResult<User>> RegistrateUser(User user)
         {
             if (ModelState.IsValid)
@@ -33,7 +33,7 @@ namespace RepApplication.Controllers
                         user.Role = userRole;
 
                     db.Users.Add(user);
-                   await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
                     await Authenticate(user);
                 }
             }
@@ -47,12 +47,12 @@ namespace RepApplication.Controllers
         }
 
         [HttpPut]
-  
+
         public async Task<ActionResult<User>> LoginUser(User user)
         {
             if (ModelState.IsValid)
             {
-                if(db.Users.FirstOrDefault(u=>u.Email == user.Email && u.Password == user.Password)!= null)
+                if (db.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password) != null)
                 {
                     await Authenticate(user);
                     return Ok(user);
@@ -68,7 +68,7 @@ namespace RepApplication.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-               
+
             };
 
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,

@@ -1,16 +1,25 @@
 <div class="form">
   <h1>Регистрация</h1>
   <div class="input-form">
-    <input type="text" [(ngModel)]="user.name" placeholder="Name" />
+    <input type="text" [(ngModel)]="user.name" placeholder="Name" #name="ngModel" required />
+    <div [hidden]="name.valid || name.untouched" class="alert alert-danger">
+      Не указано имя
+    </div>
   </div>
   <div class="input-form">
-    <input type="email" [(ngModel)]="user.email" placeholder="Email" />
+    <input type="email" [(ngModel)]="user.email" placeholder="Email" #email="ngModel" required  pattern="[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}" />
+    <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
+      Некорректный email
+    </div>
   </div>
   <div class="input-form">
-    <input type="password" [(ngModel)]="user.password" placeholder="Password" />
+    <input type="password" [(ngModel)]="user.password" placeholder="Password" #passwrod="ngModel" required />
+    <div [hidden]="password.valid || password.untouched" class="alert alert-danger">
+      Некорректный пароль
+    </div>
   </div>
   <div class="input-form">
-    <input type="button" (click)="save()" value="Регистрация" />
+    <input type="button" (click)="save()" value="Регистрация" [disabled]="name.invalid || email.invalid || password.invalid"  />
   </div>
   <div>
     <a routerLink="/login">Есть аккаунт? Войдите!</a>

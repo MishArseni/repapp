@@ -20,7 +20,7 @@ namespace RepApplication.Models
         [HttpGet]
         public IEnumerable<Project> GetMyProjects()
         {
-            string name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
+            var name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
             User user = db.Users.FirstOrDefault(u => u.Email == name);
 
             var projectsId = db.userProjects.Where(u => u.UserId == user.UserId).Select(u => u.ProjectId);
@@ -50,7 +50,7 @@ namespace RepApplication.Models
           
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFromMyProjects(int id)
         {
             Project project = db.Projects.FirstOrDefault(u => u.ProjectId == id);

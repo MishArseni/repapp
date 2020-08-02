@@ -19,7 +19,7 @@ export class MyProjectAddComponent{
 
   save(id: number) {
     this.projectService.addToMyProjects(id).subscribe();
-    window.location.href = '/projectList';
+    window.location.href = '/myProjectList';
   }
 
 }

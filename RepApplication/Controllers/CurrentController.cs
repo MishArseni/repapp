@@ -23,7 +23,7 @@ namespace RepApplication.Controllers
         [HttpGet]
         public User GetCurrentUser()
         {
-            string name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
+            var name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
             User user = db.Users.FirstOrDefault(u => u.Email == name);
             return user;
         }

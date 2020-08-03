@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RepApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -21,15 +22,15 @@ namespace RepApplication.Controllers
 
         [HttpGet]
 
-        public IEnumerable<Project> GetExcept()
+        public async Task<IEnumerable<Project>> GetExcept()
         {
-            string name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
-            User user = db.Users.FirstOrDefault(u => u.Email == name);
+            var name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
+            User user =await db.Users.FirstOrDefaultAsync(u => u.Email == name);
 
             var projectsId = db.userProjects.Where(u => u.UserId == user.UserId).Select(u => u.ProjectId);
             List<Project> myProjects = new List<Project>();
 
-            foreach (var project in db.Projects.ToList())
+            foreach (var project in await db.Projects.ToListAsync())
             {
                 if (projectsId.Contains(project.ProjectId))
                 {

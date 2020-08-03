@@ -10,7 +10,7 @@ namespace RepApplication.Controllers
 {
     [ApiController]
     [Route("api/projects")]
-    public class ProjectController:Controller
+    public class ProjectController : Controller
     {
         ApplicationContext db;
         public ProjectController(ApplicationContext context)
@@ -19,15 +19,15 @@ namespace RepApplication.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Project> Get()
+        public async Task<ActionResult<IEnumerable<Project>>> Get()
         {
-            return db.Projects.ToList();
+            return await db.Projects.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public Project Get(int id)
+        public async Task<Project> Get(int id)
         {
-            Project project = db.Projects.FirstOrDefault(u => u.ProjectId == id);
+            Project project = await db.Projects.FirstOrDefaultAsync(u => u.ProjectId == id);
             return project;
         }
 
@@ -49,25 +49,25 @@ namespace RepApplication.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(Project project)
+        public async Task<IActionResult> Put(Project project)
         {
             if (ModelState.IsValid)
             {
                 db.Update(project);
-                db.SaveChanges();   
+                await db.SaveChangesAsync();
                 return Ok(project);
             }
             return BadRequest(ModelState);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            Project project = db.Projects.FirstOrDefault(x => x.ProjectId == id);
+            Project project = await db.Projects.FirstOrDefaultAsync(x => x.ProjectId == id);
             if (project != null)
             {
                 db.Projects.Remove(project);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             return Ok(project);
         }

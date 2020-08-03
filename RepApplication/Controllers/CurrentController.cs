@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RepApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace RepApplication.Controllers
 {
     [ApiController]
     [Route("api/getCurrentUser")]
-    public class CurrentController:Controller
+    public class CurrentController : Controller
     {
         ApplicationContext db;
         public CurrentController(ApplicationContext context)
@@ -21,10 +22,10 @@ namespace RepApplication.Controllers
         }
 
         [HttpGet]
-        public User GetCurrentUser()
+        public async Task<ActionResult<User>> GetCurrentUser()
         {
             var name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
-            User user = db.Users.FirstOrDefault(u => u.Email == name);
+            User user = await db.Users.FirstOrDefaultAsync(u => u.Email == name);
             return user;
         }
 
@@ -33,7 +34,7 @@ namespace RepApplication.Controllers
         public async void Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            
+
         }
 
 

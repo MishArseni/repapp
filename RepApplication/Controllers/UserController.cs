@@ -19,15 +19,15 @@ namespace RepApplication.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<User> Get()
+        public async Task<IEnumerable<User>> Get()
         {
-            return db.Users.ToList();
+            return await db.Users.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public User Get(int id)
+        public async Task<User> Get(int id)
         {
-            User user = db.Users.FirstOrDefault(u => u.UserId == id);
+            User user = await db.Users.FirstOrDefaultAsync(u => u.UserId == id);
             return user;
         }
 
@@ -53,28 +53,28 @@ namespace RepApplication.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(User user)
+        public async Task<IActionResult> Put(User user)
         {
             if (ModelState.IsValid)
             {
-                Role userRole = db.Roles.FirstOrDefault(r => r.Name == "employee");
+                Role userRole = await db.Roles.FirstOrDefaultAsync(r => r.Name == "employee");
                 if (userRole != null)
                     user.Role = userRole;
                 db.Update(user);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return Ok(user);
             }
             return BadRequest(ModelState);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            User user = db.Users.FirstOrDefault(x => x.UserId == id);
+            User user = await db.Users.FirstOrDefaultAsync(x => x.UserId == id);
             if (user != null)
             {
                 db.Users.Remove(user);
-                db.SaveChanges();
+               await db.SaveChangesAsync();
             }
             return Ok(user);
         }

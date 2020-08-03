@@ -31,6 +31,7 @@ namespace RepApplication.Models
 
             modelBuilder.Entity<UserProject>().HasOne(pt => pt.User).WithMany(p => p.UserProjects).HasForeignKey(pt => pt.UserId);
             modelBuilder.Entity<UserProject>().HasOne(pt => pt.Projects).WithMany(p => p.UserProjects).HasForeignKey(pt => pt.ProjectId);
+            base.OnModelCreating(modelBuilder);
         }
 
     }

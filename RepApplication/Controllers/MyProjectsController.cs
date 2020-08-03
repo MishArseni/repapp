@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,10 @@ namespace RepApplication.Models
         }
 
         [HttpGet]
-        public IEnumerable<Project> GetMyProjects()
+        public async Task<IEnumerable<Project>> GetMyProjects()
         {
             var name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
-            User user = db.Users.FirstOrDefault(u => u.Email == name);
+            User user = await db.Users.FirstOrDefaultAsync(u => u.Email == name);
 
             var projectsId = db.userProjects.Where(u => u.UserId == user.UserId).Select(u => u.ProjectId);
             List<Project> myProjects = new List<Project>();
@@ -37,31 +38,31 @@ namespace RepApplication.Models
         }
 
         [HttpPost]
-        public IActionResult AddToMyProjects([FromBody] int id)
+        public async Task<IActionResult> AddToMyProjects([FromBody] int id)
         {
-                string name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
-                User user = db.Users.FirstOrDefault(u => u.Email == name);
-                Project project = db.Projects.FirstOrDefault(u => u.ProjectId == id);
+            var name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
+            User user = await db.Users.FirstOrDefaultAsync(u => u.Email == name);
+            Project project = await db.Projects.FirstOrDefaultAsync(u => u.ProjectId == id);
 
-                UserProject userProj = new UserProject { User = user, Projects = project };
-                db.userProjects.Add(userProj);
-                db.SaveChanges();
-                return Ok();
-          
+            UserProject userProj = new UserProject { User = user, Projects = project };
+            await db.userProjects.AddAsync(userProj);
+            await db.SaveChangesAsync();
+            return Ok();
+
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFromMyProjects(int id)
         {
-            Project project = db.Projects.FirstOrDefault(u => u.ProjectId == id);
+            Project project = await db.Projects.FirstOrDefaultAsync(u => u.ProjectId == id);
 
             if (project != null)
             {
-                string name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
-                User user = db.Users.FirstOrDefault(u => u.Email == name);
+                var name = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
+                User user = await db.Users.FirstOrDefaultAsync(u => u.Email == name);
                 UserProject userProj = new UserProject { User = user, Projects = project };
                 db.userProjects.Remove(userProj);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return Ok(id);
             }
             return BadRequest();

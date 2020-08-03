@@ -14,9 +14,6 @@
   </div>
   <div class="input-form">
     <input type="password" [(ngModel)]="user.password" placeholder="Password" #passwrod="ngModel" required />
-    <div [hidden]="password.valid || password.untouched" class="alert alert-danger">
-      Некорректный пароль
-    </div>
   </div>
   <div class="input-form">
     <input type="button" (click)="save()" value="Регистрация" [disabled]="name.invalid || email.invalid || password.invalid"  />

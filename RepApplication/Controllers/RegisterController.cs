@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RepApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -26,15 +27,16 @@ namespace RepApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (db.Users.FirstOrDefault(u => u.Email == user.Email) == null)
+                user = await db.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+                if (user == null)
                 {
-                    Role userRole = db.Roles.FirstOrDefault(r => r.Name == "employee");
+                    Role userRole = await db.Roles.FirstOrDefaultAsync(r => r.Name == "employee");
                     if (userRole != null)
                         user.Role = userRole;
 
-                    db.Users.Add(user);
+                    await db.Users.AddAsync(user);
                     await db.SaveChangesAsync();
-                    await Authenticate(user);
+                    await Authenticate(user.Name);
                 }
             }
 
@@ -52,9 +54,10 @@ namespace RepApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (db.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password) != null)
+                user = await db.Users.FirstOrDefaultAsync(u => u.Email == user.Email && u.Password == user.Password);
+                if (user != null)
                 {
-                    await Authenticate(user);
+                    await Authenticate(user.Name);
                     return Ok(user);
 
                 }
@@ -62,19 +65,20 @@ namespace RepApplication.Controllers
             ModelState.AddModelError(string.Empty, "Некорректные логин и(или) пароль");
             return BadRequest(ModelState);
         }
-        private async Task Authenticate(User user)
+        private async Task Authenticate(string userName)
         {
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
             };
 
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
-                ClaimsIdentity.DefaultRoleClaimType);
+            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
+
+
+
     }
 }
